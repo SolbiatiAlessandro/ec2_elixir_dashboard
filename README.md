@@ -1,6 +1,9 @@
 # Ec2Test
 
 This is an example EC2 dashboard to show how to use ExAws is practice.
+
+![](https://raw.githubusercontent.com/SolbiatiAlessandro/ec2_elixir_dashboard/master/Screenshot%202020-08-26%20at%2013.44.17.png)
+
 You need access key from AWS and set it as a environment variable
 https://aws.amazon.com/fr/blogs/security/wheres-my-secret-access-key/
 
