@@ -3,18 +3,18 @@
   <p>A productive web framework that<br/>does not compromise speed or maintainability.</p>
 </section>
 <section class="phx-hero">
-  <h1>This is your EC2 instances</h1>
+  <h1>These are your IVS Channels</h1>
   <table>
     <tr>
-      <th>Server ID</th>
-      <th>Launch time</th>
+      <th>Name</th>
+      <th>arn</th>
     </tr>
-    <%= for instance <- @instances do %>
+    <%= for channel <- @ivs_channels do %>
     <tr>
-      <td><%= instance.server %> </td>
-      <td><%= instance.create_time %> </td>
+      <td><%= channel["name"] %> </td>
+      <td><%= channel["arn"] %> </td>
     </tr>
-  <% end %>
+    <% end %>
   </table>
 </section>
 

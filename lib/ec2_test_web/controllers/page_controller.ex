@@ -4,25 +4,22 @@ defmodule Ec2TestWeb.PageController do
   import SweetXml
 
   def index(conn, _params) do
-    {:ok, ret} = ExAws.EC2.describe_instances() |> ExAws.request()
-    instances = parse_server_list_data(ret.body)
-    render(conn, "index.html", %{instances: instances, body: to_string(ret.body)})
+    ivs_channels = ivs_channels()
+    render(conn, "index.html", %{ivs_channels: ivs_channels})
   end
 
-  defp parse_server_list_data(data) do
-    raw_data =
-      data
-      |> xpath(
-        ~x"//reservationSet/item"l,
-        instanceId: ~x"./instancesSet/item/instanceId/text()",
-        launchTime: ~x"./instancesSet/item/launchTime/text()"
-      )
-
-    Enum.map(raw_data, fn server ->
-      %{
-        server: to_string(server[:instanceId]),
-        create_time: to_string(server[:launchTime])
+  def ivs_channels() do
+    {:ok, channels} =
+      %ExAws.Operation.JSON{
+        http_method: :post,
+        headers: [
+          {"content-type", "application/x-amz-json-1.1"}
+        ],
+        path: "/ListChannels",
+        service: :ivs
       }
-    end)
+      |> ExAws.request()
+
+    channels["channels"]
   end
 end

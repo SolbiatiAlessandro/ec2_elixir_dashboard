@@ -43,8 +43,7 @@ defmodule Ec2Test.MixProject do
       {:gettext, "~> 0.11"},
       {:jason, "~> 1.0"},
       {:plug_cowboy, "~> 2.0"},
-      {:ex_aws, "~> 2.0"},
-      {:ex_aws_ec2, "~> 2.0"},
+      {:ex_aws, git: "https://github.com/habiter-app/ex_aws.git"},
       {:poison, "~> 3.0"},
       {:hackney, "~> 1.9"},
       {:sweet_xml, "~> 0.6"}
